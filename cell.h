@@ -21,6 +21,6 @@ t_d_cell* createEmptyCell(int value, int levels);
 // void displayCell(t_d_cell* cell);
 t_d_list* createEmptyList(int maxlevel);
 void insertHead(t_d_list* list, int value, int levels);
-void DisplayLevel(t_d_list t, int level);
+void displayLevel(t_d_list* list, int level);
 
 #endif
