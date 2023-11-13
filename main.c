@@ -6,6 +6,6 @@ int main()
     insertHead(list, 11, 0);
     insertHead(list, 12, 1);
     displayLevel(list, 1);
-    displayLevel(list, 2);
+    displayLevel(list, 0);
     return 0;
 }

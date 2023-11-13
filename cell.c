@@ -1,6 +1,6 @@
 #include "cell.h"
 
-t_d_cell* createEmptyCell(int value, int levels)
+t_d_cell* createCell(int value, int levels)
 {
     t_d_cell *cell = (t_d_cell*) malloc(sizeof(t_d_cell));
     cell->value = value;
@@ -26,7 +26,7 @@ t_d_list* createEmptyList(int maxlevel)
 
 void insertHead(t_d_list* list, int value, int levels)
 {
-    t_d_cell* cell = createEmptyCell(value, levels);
+    t_d_cell* cell = createCell(value, levels);
     for (int i = 0; i <= levels; i++)
     {
         if (list->head[i] != NULL)
@@ -42,18 +42,16 @@ void insertHead(t_d_list* list, int value, int levels)
 void displayLevel(t_d_list* list, int level)
 {
     t_d_cell* tmp = list->head[level]; // Store a pointer to the current level's head
-    fprintf(stdout, "A\n");
+    
     
     while (tmp != NULL) // Change the loop condition to iterate through the linked list
     {
-        fprintf(stdout, "B\n");
         printf("%d", tmp->value);
-        fprintf(stdout, "C\n");
-        
-        if (tmp->next != NULL && tmp->next[level] != NULL) // Check the specific level in the next array
-            tmp = tmp->next[level];
-        fprintf(stdout, "D\n");
+        tmp = tmp->next[level];
+        printf(" | ");
     }
+    printf("END");
+    printf("\n");
 }
 
 // void displayCell(t_d_cell* cell)
