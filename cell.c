@@ -27,44 +27,69 @@ t_d_list* createEmptyList(int maxlevel)
 void insertHead(t_d_list* list, int value, int levels)
 {
     t_d_cell* cell = createCell(value, levels);
-    for (int i = 0; i <= levels; i++)
+    for (int curlvl = 0; curlvl <= levels; curlvl++)
     {
-        if (list->head[i] != NULL)
+        if (list->head[curlvl] != NULL)
         {
-            cell->next[i] = list->head[i];
-            list->head[i] = cell;
+            cell->next[curlvl] = list->head[curlvl];
+            list->head[curlvl] = cell;
         }else{
-          list->head[i] = cell;
+          list->head[curlvl] = cell;
         }
     }
-}
+};
 
 void displayLevel(t_d_list* list, int level)
 {
     t_d_cell* tmp = list->head[level]; // Store a pointer to the current level's head
-    
-    
-    while (tmp != NULL) // Change the loop condition to iterate through the linked list
+    t_d_cell* tmp2 = list->head[0];
+
+    printf("[list head_%d @-]--", level);
+
+    while (tmp != NULL && tmp2 != NULL)
     {
-        printf("%d", tmp->value);
-        tmp = tmp->next[level];
-        printf(" | ");
+        if (tmp2 != NULL && tmp->value == tmp2->value)
+        {
+            printf(">[ %d|@]--", tmp->value);
+            tmp = tmp->next[level];
+        }
+        else
+        {
+            printf("----------");
+        }
+        tmp2 = tmp2->next[0];
     }
-    printf("END");
-    printf("\n");
+
+    printf(">NULL\n");
 }
 
-// void displayCell(t_d_cell* cell)
-// {
-//     printf("Value : %d\nLevel : %d\n", cell->value, cell->level);
-// }
+void sortedInsert(t_d_list* list, int value, int level)
+{
+    t_d_cell *tmp = list->head[level];
+    t_d_cell *cell;
+    if (value < tmp->value)
+        insertHead(list, value, level);
+    else
+    {
+        cell = createCell(value, level);
+        while (value > tmp->value)
+        {
+            if (value < tmp->next[level]->value)
+            {
+                cell->next[level] = tmp->next[level];
+                tmp->next[level] = cell;
+            }
+            tmp = tmp->next[level];
+        }
+        cell->next[level] = tmp->next[level];
+        tmp->next[level] = cell;
+    }
+}
 
-// void showAllLevels(t_d_list t)
-// {
-//     int i;
-//     while(i <= t.maxlevel)
-//     {
-//         DisplayLevel(t,i);
-//         i++;
-//     }
-// }
+void displayALLlevel(t_d_list* list)
+{
+    int nbr = list->maxlevel;
+    for(int i=0;i<nbr;i++){
+        displayLevel(list,i);
+    }
+}
