@@ -81,8 +81,6 @@ void sortedInsert(t_d_list* list, int value, int level)
             }
             tmp = tmp->next[level];
         }
-        cell->next[level] = tmp->next[level];
-        tmp->next[level] = cell;
     }
 }
 

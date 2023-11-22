@@ -8,7 +8,7 @@ int main()
     insertHead(list, 3, 2);
     insertHead(list, 2, 2);
     insertHead(list, 1, 2);
-    // sortedInsert(list, 4, 1);
+    sortedInsert(list, 4, 1);
     displayALLlevel(list);
     return 0;
 }
