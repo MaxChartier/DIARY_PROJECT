@@ -27,7 +27,7 @@ t_d_list* createEmptyList(int maxlevel)
 void insertHead(t_d_list* list, int value, int levels)
 {
     t_d_cell* cell = createCell(value, levels);
-    for (int curlvl = 0; curlvl <= levels; curlvl++)
+    for (int curlvl = 0; curlvl < levels; curlvl++)
     {
         if (list->head[curlvl] != NULL)
         {
@@ -37,7 +37,7 @@ void insertHead(t_d_list* list, int value, int levels)
             list->head[curlvl] = cell;
         }
     }
-};
+}
 
 
 // void sortedInsert(t_d_list* list, int value, int levels)

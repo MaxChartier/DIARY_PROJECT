@@ -3,10 +3,9 @@
 
 int main()
 {
-    int n = 3;
-    t_d_list* list = createEmptyList(n);
+    t_d_list* list = createEmptyList(SIZE);
 
-    int taille = (int)(pow(2, n) - 1);
+    int taille = (int)(pow(2, SIZE) - 1);
     int count = 2;
     int *array;
     array = (int*) malloc(sizeof(int) * taille);
@@ -27,7 +26,7 @@ int main()
     int j = 0;
     for (int i = taille; i > 0; i--)
     {
-        insertHead(list, i, array[j]-1);
+        insertHead(list, i, array[j]);
         j++;
     }
     displayAllLevel(list);
