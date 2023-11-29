@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 typedef struct s_d_cell
 {
@@ -21,7 +22,7 @@ t_d_cell* createCell(int value, int levels);
 t_d_list* createEmptyList(int maxlevel);
 void insertHead(t_d_list* list, int value, int levels);
 void displayLevel(t_d_list* list, int level);
-void sortedInsert(t_d_list* list, int value, int level);
+void sortedInsert(t_d_list* list, int value, int levels);
 void displayALLlevel(t_d_list* list);
 
 #endif

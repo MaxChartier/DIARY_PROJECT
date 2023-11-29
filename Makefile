@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra
 
-SRC = main.c cell.c
+SRC = main.c cell.c complementary.c
 
 OBJS = $(SRC:.c=.o)
 
