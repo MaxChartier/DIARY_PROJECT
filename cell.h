@@ -14,7 +14,7 @@ typedef int bool;
 
 typedef struct s_d_cell
 {
-    int value;
+    int value; // t_appointment apt; ?
     int level;
     struct s_d_cell **next;
 } t_d_cell;

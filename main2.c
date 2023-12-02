@@ -1,5 +1,6 @@
 #include "cell.h"
 #include "complementary.h"
+#include "timer.h"
 
 int main()
 {
@@ -30,6 +31,10 @@ int main()
         j++;
     }
     displayAllLevel(list);
+    startTimer();
+    searchValue(*list, 17);
+    stopTimer();
+    displayTime();
     free(list);
     free(array);
     return 0;

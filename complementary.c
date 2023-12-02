@@ -40,3 +40,21 @@ void displayAllLevel(t_d_list* list)
     for (int i=0;i<nbr;i++)
         displayLevel(list,i);
 }
+
+int searchValue(t_d_list list, int value) // return the place of the cell containing the value if found, -1 otherwise
+{
+    t_d_cell *cell = list.head[0];
+    int n = 0;
+    bool found = false;
+    while ((found == false) && (cell->next[0] != NULL))
+    {
+        if (cell->value == value)
+            found = true;
+        cell = cell->next[0];
+        n++;
+    }
+    if (found == true)
+        return n;
+    else
+        return -1;
+}
