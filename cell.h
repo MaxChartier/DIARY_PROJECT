@@ -7,6 +7,7 @@
 #include <math.h>
 
 #define SIZE 4
+#define NUMSEARCH 10000
 #define true 1
 #define false 0
 
@@ -31,5 +32,6 @@ void insertHead(t_d_list* list, int value, int levels);
 void displayLevel(t_d_list* list, int level);
 // void sortedInsert(t_d_list* list, int value, int levels);
 void displayALLlevel(t_d_list* list);
+int dichoSearchValue(t_d_list list, int value);
 
 #endif

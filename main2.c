@@ -5,8 +5,10 @@
 int main()
 {
     t_d_list* list = createEmptyList(SIZE);
+    srand(time(NULL));
 
     int taille = (int)(pow(2, SIZE) - 1);
+    int val_search = 0;
     int count = 2;
     int *array;
     array = (int*) malloc(sizeof(int) * taille);
@@ -30,11 +32,35 @@ int main()
         insertHead(list, i, array[j]);
         j++;
     }
+
+/*------------------------------------------------*/
+
     displayAllLevel(list);
     startTimer();
-    searchValue(*list, 17);
+
+    for (int i = 0; i < NUMSEARCH; i++)
+    {
+        val_search = (rand() % taille) + 1;
+        searchValue(*list, val_search);
+    }
+    
     stopTimer();
     displayTime();
+
+/*------------------------------------------------*/
+    startTimer();
+
+    for (int i = 0; i < NUMSEARCH; i++)
+    {
+        val_search = (rand() % taille) + 1;
+        dichoSearchValue(*list, val_search);
+    }
+    
+    stopTimer();
+    displayTime();
+
+/*------------------------------------------------*/
+
     free(list);
     free(array);
     return 0;

@@ -1,5 +1,5 @@
-#ifndef CONTACT_H
-# define CONTACT_H
+#ifndef APPOINTMENT_H
+# define APPOINTMENT_H
 
 #include <string.h>
 #include <ctype.h>
@@ -36,9 +36,11 @@ typedef struct s_calendar
 {
     t_contact contact;
     t_d_list appointments;
-};
+}t_calendar;
 
 char *scanString();
-
+t_contact scanContact();
+char *concUnderscore(char *string1, char *string2);
+char *strlower(char *string);
 
 #endif
