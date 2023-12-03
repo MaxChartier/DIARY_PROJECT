@@ -30,8 +30,7 @@ t_d_cell* createCell(int value, int levels);
 t_d_list* createEmptyList(int maxlevel);
 void insertHead(t_d_list* list, int value, int levels);
 void displayLevel(t_d_list* list, int level);
-// void sortedInsert(t_d_list* list, int value, int levels);
 void displayALLlevel(t_d_list* list);
 int dichoSearchValue(t_d_list list, int value);
-
+void insertSortedCell(t_d_list* list, int value, int level);
 #endif

@@ -29,9 +29,14 @@ int main()
     int j = 0;
     for (int i = taille; i > 0; i--)
     {
-        insertHead(list, i, array[j]);
+        if (i != 7)
+            insertHead(list, i, array[j]);
         j++;
     }
+
+    printf("|%d|\n", list->head[0]->value);
+
+    insertSortedCell(list, 7, 1);
 
 /*------------------------------------------------*/
 

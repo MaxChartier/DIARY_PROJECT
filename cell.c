@@ -39,25 +39,27 @@ void insertHead(t_d_list* list, int value, int levels)
     }
 }
 
-
-// void sortedInsert(t_d_list* list, int value, int levels)
-// {
-//     t_d_cell *tmp_cell = list->head[0];
-//     t_d_list *tmp_list = NULL;
-//     if (value < list->head[0]->value)
-//     {
-//         insertHead(list, value, levels);
-//     }
-//     else
-//     {
-//         while ((tmp_cell != NULL) && (tmp_cell->next[0]->value < value))
-//         {
-//             fprintf(stdout, "DDD\n");
-//             tmp_cell = tmp_cell->next[0];
-//         }
-//         fprintf(stdout, "ABC\n");
-//         // tmp_list->head = tmp_cell->next;
-//         insertHead(tmp_list, value, levels);
-//         fprintf(stdout, "ABC\n");
-//     }
-// }
+void insertSortedCell(t_d_list* list, int value, int level)
+{
+    t_d_cell *cell = createCell(value, level);
+    t_d_cell *tmp = NULL;
+    for (int i = list->maxlevel - 1; i >= 0; i--)
+    {
+        if (cell->level > i)
+        {
+            if (list->head[i] == NULL)
+            {
+                cell->next[i] = list->head[i];
+                list->head[i] = cell;
+            }
+            else
+            {
+                tmp = list->head[i];
+                while (tmp->next[i]->value < value)
+                    tmp = tmp->next[i];
+                cell->next[i] = tmp->next[i];
+                tmp->next[i] = cell;
+            }
+        }
+    }
+}
