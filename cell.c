@@ -55,8 +55,12 @@ void insertSortedCell(t_d_list* list, int value, int level)
             else
             {
                 tmp = list->head[i];
-                while (tmp->next[i]->value < value)
+                while ((tmp->next[i] != NULL))
+                {
+                    if (tmp->next[i]->value > value)
+                        break;
                     tmp = tmp->next[i];
+                }
                 cell->next[i] = tmp->next[i];
                 tmp->next[i] = cell;
             }

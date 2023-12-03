@@ -9,6 +9,7 @@ int main()
 
     int taille = (int)(pow(2, SIZE) - 1);
     int val_search = 0;
+    int num_search[4] = {1000, 10000, 100000};
     int count = 2;
     int *array;
     array = (int*) malloc(sizeof(int) * taille);
@@ -29,36 +30,39 @@ int main()
     int j = 0;
     for (int i = taille; i > 0; i--)
     {
-        if (i != 7)
-            insertHead(list, i, array[j]);
+        insertHead(list, i, array[j]);
         j++;
     }
 
-    printf("|%d|\n", list->head[0]->value);
-
-    insertSortedCell(list, 7, 1);
+    displayAllLevel(list);
 
 /*------------------------------------------------*/
 
-    displayAllLevel(list);
     startTimer();
 
-    for (int i = 0; i < NUMSEARCH; i++)
+    for (int k = 0; k < 3; k++)
     {
-        val_search = (rand() % taille) + 1;
-        searchValue(*list, val_search);
+        for (int i = 0; i < num_search[k]; i++)
+        {
+            val_search = (rand() % taille) + 1;
+            searchValue(*list, val_search);
+        }
     }
     
     stopTimer();
     displayTime();
 
 /*------------------------------------------------*/
+
     startTimer();
 
-    for (int i = 0; i < NUMSEARCH; i++)
+    for (int k = 0; k < 3; k++)
     {
-        val_search = (rand() % taille) + 1;
-        dichoSearchValue(*list, val_search);
+        for (int i = 0; i < num_search[k]; i++)
+        {
+            val_search = (rand() % taille) + 1;
+            dichoSearchValue(*list, val_search);
+        }
     }
     
     stopTimer();
