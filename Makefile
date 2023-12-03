@@ -2,11 +2,11 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra
 
-SRC1 = main1.c cell.c complementary.c timer.c appointment.c
+SRC1 = src/mains/main1.c src/appointment.c src/cell.c src/complementary.c src/timer.c
 
-SRC2 = main2.c cell.c complementary.c timer.c appointment.c
+SRC2 = src/mains/main2.c src/appointment.c src/cell.c src/complementary.c src/timer.c
 
-SRC3 = main3.c cell.c complementary.c timer.c appointment.c
+SRC3 = src/mains/main3.c src/appointment.c src/cell.c src/complementary.c src/timer.c
 
 OBJS1 = $(SRC1:.c=.o)
 
