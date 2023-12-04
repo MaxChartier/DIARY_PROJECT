@@ -4,7 +4,10 @@ char *scanString()
 {
     char *string = (char*) malloc(sizeof(char)*30);
     fflush(stdin);
-    string = strlower(fgets(string, sizeof(string), stdin));
+    string = strlower(fgets(string, 30, stdin));
+    int length = strlen(string);
+    if (string[length-1] == '\n')
+        string[length-1] = '\0';
     return string;
 }
 
@@ -21,7 +24,7 @@ t_contact scanContact()
 char *concUnderscore(char *string1, char *string2)
 {
     char middle = '_';
-    char *tmp = (char*) malloc(sizeof(string1) + sizeof(middle) + sizeof(string2)); 
+    char *tmp = (char*) malloc(sizeof(string1) + sizeof(middle) + sizeof(string2));
     strncat(tmp, string2, strlen(string2));
     strncat(tmp, &middle, 1);
     strncat(tmp, string1, strlen(string1));

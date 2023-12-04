@@ -4,73 +4,52 @@
 
 int main()
 {
-    t_d_list* list = createEmptyList(SIZE);
     srand(time(NULL));
-
-    int taille = (int)(pow(2, SIZE) - 1);
     int val_search = 0;
     int num_search[4] = {1000, 10000, 100000};
-    int count = 2;
-    int *array;
-    array = (int*) malloc(sizeof(int) * taille);
-    for (int i = 0; i < taille; i++)
-        array[i] = 1;
-
-    while (count < taille)
+    for (int level = 7; level < 15; level++)
     {
-        for (int i = 0; i < taille; i++)
+        int taille = (int)(pow(2, level) - 1);
+        t_d_list* list = createEmptyList(level);
+        list = fillList(list, taille);
+
+    /*------------------------------------------------*/
+
+        startTimer();
+
+        for (int k = 0; k < 3; k++)
         {
-            if (((i+1) % count) == 0)
+            for (int i = 0; i < num_search[k]; i++)
             {
-                array[i] += 1;
+                val_search = (rand() % taille) + 1;
+                searchValue(*list, val_search);
             }
         }
-        count *= 2;
-    }
-    int j = 0;
-    for (int i = taille; i > 0; i--)
-    {
-        insertHead(list, i, array[j]);
-        j++;
-    }
 
-    displayAllLevel(list);
+        stopTimer();
+        printf("\n|*----------------------------------*|\nlevel %d\n\n", level);
+        displayTime();
+        printf(" | ");
 
-/*------------------------------------------------*/
+    /*------------------------------------------------*/
 
-    startTimer();
+        startTimer();
 
-    for (int k = 0; k < 3; k++)
-    {
-        for (int i = 0; i < num_search[k]; i++)
+        for (int k = 0; k < 3; k++)
         {
-            val_search = (rand() % taille) + 1;
-            searchValue(*list, val_search);
+            for (int i = 0; i < num_search[k]; i++)
+            {
+                val_search = (rand() % taille) + 1;
+                dichoSearchValue(*list, val_search);
+            }
         }
-    }
-    
-    stopTimer();
-    displayTime();
 
+        stopTimer();
+        displayTime();
+        free(list);
+    }
+    printf("\n");
 /*------------------------------------------------*/
 
-    startTimer();
-
-    for (int k = 0; k < 3; k++)
-    {
-        for (int i = 0; i < num_search[k]; i++)
-        {
-            val_search = (rand() % taille) + 1;
-            dichoSearchValue(*list, val_search);
-        }
-    }
-    
-    stopTimer();
-    displayTime();
-
-/*------------------------------------------------*/
-
-    free(list);
-    free(array);
     return 0;
 }

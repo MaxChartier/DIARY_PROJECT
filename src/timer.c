@@ -24,7 +24,7 @@ void stopTimer()
 void displayTime()
 {
     // display the time using getTimeAsString()
-    printf("%s\n", getTimeAsString());
+    printf("%s", getTimeAsString());
     return;
 }
 

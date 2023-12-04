@@ -59,31 +59,35 @@ int searchValue(t_d_list list, int value) // return the place of the cell contai
         return -1;
 }
 
-// int dichoSearchValue(t_d_list list, int value)
-// {
-//     int cur_level = list.maxlevel;
-//     t_d_cell *cell = list.head[cur_level];
-//     int taille = (int)(pow(2, SIZE) - 1);
-//     int n = (taille / 2) + 1;
-//     int mid_val = cell->value / 2;
-//     while (cell->value != value)
-//     {
-//         if (value > cell->value)
-//         {
-//             cur_level--;
-//             cell = cell->next[cur_level];
-//             n += mid_val;
-//         }
-//         else
-//         {
-//             cur_level--;
-//             cell = list.head[cur_level];
-//             n -= mid_val;
-//         }
-//         mid_val /= 2;
-//     }
-//     return n;
-// }
+t_d_list *fillList(t_d_list *list, int taille)
+{
+    int count = 2;
+    int *array;
+    array = (int*) malloc(sizeof(int) * taille);
+    for (int i = 0; i < taille; i++)
+        array[i] = 1;
+
+    while (count < taille)
+    {
+        for (int i = 0; i < taille; i++)
+        {
+            if (((i+1) % count) == 0)
+            {
+                array[i] += 1;
+            }
+        }
+        count *= 2;
+    }
+    int j = 0;
+    for (int i = taille; i > 0; i--)
+    {
+        insertHead(list, i, array[j]);
+        j++;
+    }
+    free(array);
+    return list;
+}
+
 
 int dichoSearchValue(t_d_list list, int value)
 {
