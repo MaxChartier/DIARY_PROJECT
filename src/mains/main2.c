@@ -7,7 +7,7 @@ int main()
     srand(time(NULL));
     int val_search = 0;
     int num_search[4] = {1000, 10000, 100000};
-    for (int level = 7; level < 15; level++)
+    for (int level = 7; level <= 15; level++)
     {
         int taille = (int)(pow(2, level) - 1);
         t_d_list* list = createEmptyList(level);
