@@ -10,11 +10,10 @@
 #define true 1
 #define false 0
 
-typedef int bool;
 
 typedef struct s_d_cell
 {
-    int value; // t_appointment apt; ?
+    int value;
     int level;
     struct s_d_cell **next;
 } t_d_cell;
@@ -24,6 +23,8 @@ typedef struct s_d_list
     int maxlevel;
     t_d_cell **head;
 } t_d_list;
+
+typedef int my_bool;
 
 t_d_cell* createCell(int value, int levels);
 t_d_list* createEmptyList(int maxlevel);

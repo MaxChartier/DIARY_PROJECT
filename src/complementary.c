@@ -45,7 +45,7 @@ int searchValue(t_d_list list, int value) // return the place of the cell contai
 {
     t_d_cell *cell = list.head[0];
     int n = 0;
-    bool found = false;
+    my_bool found = false;
     while ((found == false) && (cell != NULL))
     {
         if (cell->value == value)
@@ -87,7 +87,6 @@ t_d_list *fillList(t_d_list *list, int taille)
     free(array);
     return list;
 }
-
 
 int dichoSearchValue(t_d_list list, int value)
 {
@@ -132,3 +131,109 @@ int dichoSearchValue(t_d_list list, int value)
     // Ajoutez une gestion appropriée si la valeur n'est pas trouvée, par exemple, return une valeur d'erreur.
     return n;
 }
+
+
+// int dichoSearchValue(t_d_list list, int value)
+// {
+//     int cur_level = list.maxlevel - 1;
+//     if (cur_level < 0 || cur_level >= list.maxlevel) {
+//         return -2;
+//     }
+
+//     t_d_cell *cell = list.head[cur_level];
+//     if (!cell) {
+//         return -2;
+//     }
+
+//     int taille = (int)(pow(2, SIZE) - 1);
+//     if (taille <= 0) {
+//         return -2;
+//     }
+
+//     int n = (taille / 2) + 1;
+//     int mid_val = cell->value / 2;
+
+//     // Ajoutez une condition pour éviter une boucle infinie si la valeur n'est pas trouvée.
+//     while (cell->value != value && cur_level >= 0) {
+//         if (value > cell->value) {
+//             cell = cell->next[--cur_level];
+//             if (cell) {
+//                 n += mid_val;
+//             } else {
+//                 return -2;
+//             }
+//         } else {
+//             cell = list.head[--cur_level];
+//             if (cell) {
+//                 n -= mid_val;
+//             } else {
+//                 return -2;
+//             }
+//         }
+//         mid_val /= 2;
+//     }
+
+//     // Ajoutez une gestion appropriée si la valeur n'est pas trouvée, par exemple, return une valeur d'erreur.
+//     return n;
+// }
+
+
+// int dichoSearchValue(t_d_list list, int value)
+// {
+//     int cur_level = list.maxlevel - 1;
+//     if (cur_level < 0 || cur_level >= list.maxlevel) {
+//         return -2;
+//     }
+
+//     t_d_cell *cell = list.head[cur_level];
+//     if (!cell) {
+//         return -2;
+//     }
+
+//     int taille = (int)(pow(2, SIZE) - 1);
+//     if (taille <= 0) {
+//         return -2;
+//     }
+
+//     int n = (taille / 2) + 1;
+//     int mid_val = cell->value / 2;
+
+//     // Ajoutez une condition pour éviter une boucle infinie si la valeur n'est pas trouvée.
+//     while ((cell->value != value) && (cur_level >= 0))
+//     {
+//         printf("value : %d\n", cell->value);
+//         if (value > cell->value)
+//         {
+//             if (value > cell->next[cur_level-1]->value)
+//             {
+//                 cell = cell->next[--cur_level];
+//             }
+//             else
+//             {
+//                 cell = list.head[--cur_level];
+//                 while (value > cell->next[cur_level]->value)
+//                 {
+//                     printf("seg_fault1\n");
+//                     cell = cell->next[cur_level];
+//                 }
+//             }
+//         }
+//         else if (value > list.head[cur_level-1]->value)
+//         {
+//             printf("seg_fault2\n");
+//             cell = list.head[--cur_level];
+//         }
+//         else
+//         {
+//             cell  = list.head[--cur_level];
+//             while (value > cell->value)
+//             {
+//                 printf("seg_fault3\n");
+//                 cell = cell->next[cur_level];
+//             }
+//         }
+//     }
+
+//     // Ajoutez une gestion appropriée si la valeur n'est pas trouvée, par exemple, return une valeur d'erreur.
+//     return cell->value;
+// }
