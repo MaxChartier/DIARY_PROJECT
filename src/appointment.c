@@ -81,6 +81,27 @@ char *strlower(char *string)
     return string;
 }
 
+void displayLevelCnt(t_list_contact* list,int level)
+{
+    t_cell_cnt* tmp = list->head[level]; // Store a pointer to the current level's head
+    printf("[list head_%d @-]-->",level);
+    while (tmp != NULL) // Change the loop condition to iterate through the linked list
+    {
+        printf("[ %s|@]-->", tmp->contact->surname);
+        tmp = tmp->next[level];
+        printf(" | ");
+    }
+    printf("NULL");
+    printf("\n");
+}
+
+void displayAllLevelCnt(t_list_contact* list)
+{
+    int nbr = list->maxlevel;
+    for (int i = 0; i < nbr; i++)
+        displayLevelCnt(list,i);
+}
+
 void insertContact(t_list_contact *list, t_contact contact)
 {
     if (!list->head[0])
@@ -92,5 +113,5 @@ void insertContact(t_list_contact *list, t_contact contact)
         return;
     }
 
-    
+
 }

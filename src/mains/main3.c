@@ -9,6 +9,11 @@ int main()
 
     cldr.list_cnt = createEmptyCntList(SIZE);
 
+    displayLevelCnt(cldr.list_cnt, 0);
+
+    insertContact(cldr.list_cnt, scanContact());
+
+    displayAllLevelCnt(cldr.list_cnt);
     
     return 0;
 }
