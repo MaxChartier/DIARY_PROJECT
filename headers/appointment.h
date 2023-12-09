@@ -67,13 +67,13 @@ typedef struct s_calendar
 
 t_list_apt* createEmptyAptList(int maxlevel);
 t_list_contact* createEmptyCntList(int maxlevel);
-t_cell_cnt* createCellCnt(int level, t_contact contact);
+t_cell_cnt* createCellCnt(int level, t_contact* contact);
 char *scanString();
-t_contact scanContact();
+t_contact* scanContact();
 char *concUnderscore(char *string1, char *string2);
 char *strlower(char *string);
-void displayContact(t_contact contact);
+void displayContact(t_contact* contact);
 void displayLevelCnt(t_list_contact* list,int level);
-void insertContact(t_list_contact *list, t_contact contact);
+void insertContact(t_list_contact *list, t_contact* contact);
 void displayAllLevelCnt(t_list_contact* list);
 #endif

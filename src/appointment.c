@@ -11,30 +11,6 @@ t_list_apt* createEmptyAptList(int maxlevel)
     return list;
 }
 
-t_list_contact* createEmptyCntList(int maxlevel)
-{
-    t_list_contact* list;
-    list = (t_list_contact*) malloc(sizeof(t_list_contact));
-    list->maxlevel = maxlevel;
-    list->head = (t_cell_cnt**) malloc(sizeof(t_cell_cnt*) * maxlevel);
-    for (int i = 0; i < maxlevel; i++)
-        list->head[i] = NULL;
-    return list;
-}
-
-t_cell_cnt* createCellCnt(int level, t_contact contact)
-{
-    t_cell_cnt* cell = (t_cell_cnt*) malloc(sizeof(t_cell_cnt));
-    cell->contact = &contact;
-    cell->level = level;
-    cell->next = (t_cell_cnt**) malloc(sizeof(t_cell_cnt*) * cell->level);
-
-    for (int i = 0; i < cell->level; i++)
-        cell->next[i] = NULL;
-    
-    return cell;
-}
-
 char *scanString()
 {
     char *string = (char*) malloc(sizeof(char)*30);
@@ -46,22 +22,23 @@ char *scanString()
     return string;
 }
 
-t_contact scanContact()
+t_contact* scanContact()
 {   
-    t_contact contact;
+    t_contact *contact;
+    contact = (t_contact*) malloc(sizeof(t_contact));
     printf("Enter your first name : ");
-    contact.firstname = scanString();
+    contact->firstname = scanString();
     printf("Enter your surname : ");
-    contact.surname = scanString();
-    contact.conc_name = concUnderscore(contact.surname, contact.firstname);
+    contact->surname = scanString();
+    contact->conc_name = concUnderscore(contact->surname, contact->firstname);
     return contact;
 }
 
-void displayContact(t_contact contact)
+void displayContact(t_contact* contact)
 {
-    printf("First Name : %s\n", contact.firstname);
-    printf("Surname : %s\n", contact.surname);
-    printf("Known as : %s\n", contact.conc_name);
+    printf("First Name : %s\n", contact->firstname);
+    printf("Surname : %s\n", contact->surname);
+    printf("Known as : %s\n", contact->conc_name);
 }
 
 char *concUnderscore(char *string1, char *string2)
@@ -81,7 +58,7 @@ char *strlower(char *string)
     return string;
 }
 
-void displayLevelCnt(t_list_contact* list,int level)
+void displayLevelCnt(t_list_contact* list, int level)
 {
     t_cell_cnt* tmp = list->head[level]; // Store a pointer to the current level's head
     printf("[list head_%d @-]-->",level);
@@ -91,8 +68,7 @@ void displayLevelCnt(t_list_contact* list,int level)
         tmp = tmp->next[level];
         printf(" | ");
     }
-    printf("NULL");
-    printf("\n");
+    printf("NULL\n");
 }
 
 void displayAllLevelCnt(t_list_contact* list)
@@ -102,16 +78,41 @@ void displayAllLevelCnt(t_list_contact* list)
         displayLevelCnt(list,i);
 }
 
-void insertContact(t_list_contact *list, t_contact contact)
+void insertContact(t_list_contact* list, t_contact* contact)
 {
-    if (!list->head[0])
+    t_cell_cnt* cell = createCellCnt(list->maxlevel, contact);
+    for (int curlvl = 0; curlvl < cell->level; curlvl++)
     {
-        for (int i = 0; i < list->maxlevel; i++)
+        if (list->head[curlvl] != NULL)
         {
-            list->head[i] = createCellCnt(list->maxlevel, contact);
+            cell->next[curlvl] = list->head[curlvl];
+            list->head[curlvl] = cell;
+        }else{
+            list->head[curlvl] = cell;
         }
-        return;
     }
+}
 
+t_list_contact* createEmptyCntList(int maxlevel)
+{
+    t_list_contact* list;
+    list = (t_list_contact*) malloc(sizeof(t_list_contact));
+    list->maxlevel = maxlevel;
+    list->head = (t_cell_cnt**) malloc(sizeof(t_cell_cnt*) * maxlevel);
+    for (int i = 0; i < maxlevel; i++)
+        list->head[i] = NULL;
+    return list;
+}
 
+t_cell_cnt* createCellCnt(int level, t_contact* contact)
+{
+    t_cell_cnt* cell = (t_cell_cnt*) malloc(sizeof(t_cell_cnt));
+    cell->contact = contact;
+    cell->level = level;
+    cell->next = (t_cell_cnt**) malloc(sizeof(t_cell_cnt*) * cell->level);
+
+    for (int i = 0; i < cell->level; i++)
+        cell->next[i] = (t_cell_cnt*) malloc(sizeof(t_contact));
+    
+    return cell;
 }

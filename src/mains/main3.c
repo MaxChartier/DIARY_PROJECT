@@ -5,15 +5,14 @@
 
 int main()
 {
-    t_calendar cldr;
+    t_calendar *cldr = NULL;
+    cldr = (t_calendar*) malloc(sizeof(t_calendar));
+    cldr->list_cnt = createEmptyCntList(SIZE);
 
-    cldr.list_cnt = createEmptyCntList(SIZE);
-
-    displayLevelCnt(cldr.list_cnt, 0);
-
-    insertContact(cldr.list_cnt, scanContact());
-
-    displayAllLevelCnt(cldr.list_cnt);
+    insertContact(cldr->list_cnt, scanContact());
+    puts("scan\n");
+    displayAllLevelCnt(cldr->list_cnt);
+    puts("disp\n");
     
     return 0;
 }
